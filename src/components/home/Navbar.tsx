@@ -10,9 +10,8 @@ export const Navbar = () => {
   const navLinks = useMemo(
     () => [
       { label: "Home", href: "/", isAnchor: false },
-      { label: "Daftar Surah", href: "#surah-list", isAnchor: true },
+      { label: "Daftar Surah", href: "/quran", isAnchor: false },
       { label: "Tentang", href: "#about", isAnchor: true },
-      { label: "Tafsir", href: "/tafsir/1", isAnchor: false },
     ],
     []
   );
