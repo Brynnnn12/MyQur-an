@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
 import { useGetAllSurah } from "../../features/quran/useQuran";
-import { LoadingSpinner } from "../shared/LoadingSpinner";
+import { SkeletonCard } from "../shared/Skeleton";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
@@ -16,7 +16,21 @@ export const QuranCard = () => {
         id="surah-list"
         className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50"
       >
-        <LoadingSpinner label="Memuat sorotan surah" />
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              Daftar Surah Al-Quran
+            </h2>
+            <p className="text-lg text-gray-600">
+              Pilih surah yang ingin Anda baca
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <SkeletonCard key={i} />
+            ))}
+          </div>
+        </div>
       </section>
     );
   }

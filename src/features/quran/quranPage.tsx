@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useGetAllSurah } from "./useQuran";
-import { LoadingSpinner } from "../../components/shared/LoadingSpinner";
+import { SkeletonCard } from "../../components/shared/Skeleton";
 import { SurahPageHeader } from "./components/SurahPageHeader";
 import { SurahFilterBar } from "./components/SurahFilterBar";
 import { SurahGrid } from "./components/SurahGrid";
@@ -47,7 +47,17 @@ export function QuranPage() {
   const hasMore = visibleCount < filteredSurah.length;
 
   if (isLoading) {
-    return <LoadingSpinner fullscreen label="Memuat daftar surah" />;
+    return (
+      <section>
+        <SurahPageHeader totalSurah={0} />
+        <SurahFilterBar query="" onChange={() => {}} />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+          {Array.from({ length: 12 }).map((_, i) => (
+            <SkeletonCard key={i} />
+          ))}
+        </div>
+      </section>
+    );
   }
 
   if (error) {
