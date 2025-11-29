@@ -59,6 +59,78 @@ export const SkeletonAyatCard = ({ className }: SkeletonProps) => (
   </div>
 );
 
+export const SkeletonTafsirItem = () => (
+  <div className="rounded-3xl border border-slate-100 bg-white/95 px-6 py-6 shadow-lg shadow-indigo-50">
+    <Skeleton className="h-4 w-16 mb-4 bg-indigo-200" />
+    <SkeletonText lines={3} />
+  </div>
+);
+
+// Skeleton untuk header dengan gradient
+interface SkeletonHeaderProps {
+  variant?: "emerald" | "purple";
+}
+
+export const SkeletonDetailHeader = ({
+  variant = "emerald",
+}: SkeletonHeaderProps) => {
+  const gradientClass =
+    variant === "emerald"
+      ? "from-emerald-600 via-teal-500 to-blue-600 shadow-[0_20px_60px_rgba(6,95,70,0.35)]"
+      : "from-purple-600 via-indigo-600 to-blue-600 shadow-[0_20px_60px_rgba(79,70,229,0.35)]";
+
+  return (
+    <div
+      className={`rounded-3xl bg-linear-to-r ${gradientClass} px-8 py-10 text-white`}
+    >
+      <div className="animate-pulse bg-white/20 rounded h-4 w-20 mb-4" />
+      <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+        <div>
+          <div className="animate-pulse bg-white/20 rounded h-10 w-48 mb-2" />
+          <div className="animate-pulse bg-white/20 rounded h-4 w-32 mb-4" />
+          <div className="animate-pulse bg-white/20 rounded h-4 w-40" />
+        </div>
+        <div className="rounded-2xl bg-white/15 px-6 py-4 text-center">
+          <div className="animate-pulse bg-white/20 rounded h-4 w-16 mb-2" />
+          <div className="animate-pulse bg-white/20 rounded h-8 w-20" />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const SkeletonTafsirHeader = () => (
+  <div className="rounded-3xl bg-linear-to-r from-purple-600 via-indigo-600 to-blue-600 px-8 py-10 text-white shadow-[0_20px_60px_rgba(79,70,229,0.35)]">
+    <div className="animate-pulse bg-white/20 rounded h-4 w-12 mb-4" />
+    <div className="animate-pulse bg-white/20 rounded h-10 w-48 mb-2" />
+    <div className="animate-pulse bg-white/20 rounded h-4 w-32" />
+  </div>
+);
+
+export const SkeletonHeroSection = () => (
+  <div className="rounded-3xl bg-linear-to-r from-emerald-600 via-teal-500 to-blue-600 px-8 py-16 text-white shadow-[0_20px_60px_rgba(6,95,70,0.35)] text-center">
+    <div className="animate-pulse bg-white/20 rounded h-12 w-96 mx-auto mb-6" />
+    <div className="animate-pulse bg-white/20 rounded h-6 w-64 mx-auto mb-8" />
+    <div className="animate-pulse bg-white/20 rounded h-12 w-48 mx-auto" />
+  </div>
+);
+
+export const SkeletonContentSection = ({
+  centered = false,
+}: {
+  centered?: boolean;
+}) => (
+  <div
+    className={`rounded-3xl bg-white/90 px-8 py-12 shadow-lg shadow-emerald-100 ${
+      centered ? "text-center" : ""
+    }`}
+  >
+    <Skeleton className={`h-8 mb-6 ${centered ? "w-56 mx-auto" : "w-48"}`} />
+    <SkeletonText lines={centered ? 2 : 4} className="mb-8" />
+    <Skeleton className={`h-12 ${centered ? "w-48 mx-auto" : "w-40"}`} />
+  </div>
+);
+
 export const LoadingSkeleton = ({
   label = "Memuat data...",
   fullscreen = false,
